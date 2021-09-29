@@ -1,0 +1,215 @@
+.searchbar{
+    width:100%;
+    height: 70px;
+    background-color: rgb(167,43,67);
+
+}
+
+.searchbtn{
+    background-color:rgb(236,91,36) ;
+    width:150px;
+    height: 35px;
+    text-align: center;
+    color: white;
+    border: none;
+    font-weight: bold;
+}
+.searchbtn:hover{
+    cursor: pointer;
+}
+.filterbar{
+    width:100%;
+    display: flex;
+    height: 110px;
+    border: 1px solid grey;
+    box-shadow: 0px 0px 7px grey;
+}
+
+.stops{
+width: 25%;
+height: 100%;
+border-right: 1px dotted grey;
+}
+.departure{
+width: 33%;
+height: 100%;
+border-right: 1px dotted grey;
+}
+.airlines{
+width: 42%;
+height: 100%;
+}
+.contentContainer{
+    background-color: rgb(242,242,242);
+    height: 100vw;
+    width: 100%;
+    margin-top: 0px;
+    padding-top: 30px;
+}
+
+.dateAndFilter{
+   display: flex;
+   flex-wrap: wrap;
+    margin-left: 4%;
+    height: 100px;
+    width: 60%;
+    box-shadow: 0px 0px 7px grey;
+
+}
+.dateSlider{
+    width: 100%;
+    height: 40%;
+    background-color: white;
+    box-shadow: 0px 0px 7px grey;
+}
+
+.reccomended{
+    background-color: white;
+    width:60%;
+    height: 40%;
+    box-shadow: 0px 0px 7px grey;
+    margin-top: 20px;
+
+}
+.sortby{
+margin-top: 20px;
+height: 40%;
+width: 20%;
+margin-left: 20%;
+background-color: white;
+border:none
+}
+
+.allFlights{
+    margin-top: 30px;
+    background-color: white;
+     margin-left: 4%;
+    height: 100px;
+    width: 60%;
+    box-shadow: 0px 0px 7px grey;
+}
+
+.details{
+    width: 60%;
+    height: 100%;
+    border-right: 1px dotted grey;
+}
+
+.total{
+    width: 40%;
+    height: 100%;
+}
+
+.stopCheckbox{
+    display: flex;
+    margin-left: 35px;
+    justify-content: space-evenly;
+    /* border: 1px solid red; */
+    margin-top: 0px;
+}
+
+
+
+.stops>p{
+    margin-left: 50px;
+}
+
+.checkBoxStop{
+    margin-left: 20px;
+     /* border: 1px solid red; */
+}
+ /* .stopCheckbox{
+    /* border: 1px solid red; */
+    /* margin-left: 35px; */
+/* } */ 
+
+
+/* .stopCheckbox {
+    height: 18px;
+   width:18px;
+    margin-top: 5px;
+}
+    /* color: orange; */
+
+
+/* .stopCheckbox input:checked{
+    background-color: orange;
+    border-color: orange;
+    color: orange;
+} */
+
+.stopCheckbox p{
+    font-size: 12px;
+   margin-top: 12px;
+   margin-left: 0px;
+}
+.refundable{
+    margin-left: 50px;
+    display: flex;
+    margin-top: 0px;
+    /* border: 1px solid red; */
+}
+
+.refundable p{
+    font-size: 15px;
+    margin-top: 0px;
+}
+
+.departureBtn{
+    display: flex;
+    width: 100%;
+    /* border: 1px solid red; */
+    justify-content: space-evenly;
+    margin-top: 15px;
+}
+
+.depBtn{
+    height: 25px;
+    font-size: 12px;
+}
+
+.depBtn:hover{
+    color: rgb(236,91,36);
+    cursor: pointer;
+}
+.daytime{
+    display: flex;
+    
+    
+}
+.daytime p{
+     font-size: 12px; 
+   margin-left: 25px;
+}
+
+.daytime p:nth-child(2){
+   font-size: 12px; 
+   margin-left: 40px;
+}
+.daytime p:nth-child(3){
+   font-size: 12px; 
+   margin-left: 50px;
+}
+.daytime p:nth-child(4){
+   font-size: 12px; 
+   margin-left: 60px;
+}
+
+.airlineCheckbox{
+    /* border: 1px solid blue; */
+    display: flex;
+    height: 40px !important;
+    padding: 0px;
+}
+
+.airlineCheckbox p{
+    font-size: 12px;
+    padding-top: 0px;
+}
+
+.airlineCheckbox div{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid red; */
+    width: 150px;
+}
