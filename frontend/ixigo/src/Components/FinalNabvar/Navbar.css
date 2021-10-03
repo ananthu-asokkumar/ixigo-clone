@@ -1,0 +1,17 @@
+.backroundimage {
+  background-image: url("https://www.holidify.com/images/cmsuploads/compressed/5621259188_e74d63cb05_b_20180302140149.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 550px;
+}
+.nav:hover {
+  border-bottom: solid 3px #ec5b24;
+  color: #fff;
+  opacity: 1;
+  font-weight: 600;
+}
+.nav {
+  opacity: 0.7;
+  color: rgba(255, 255, 255, 0.6);
+}
