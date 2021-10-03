@@ -10,8 +10,10 @@ import loanadd from './Images/loanadd.PNG';
 import delladd from './Images/delladd.PNG'
 import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import { useState,useEffect } from 'react';
+import { useState,useEffect,useContext } from 'react';
 import axios from 'axios'
+import BookingDropDown from './BookingDropDown';
+import { BookingContext } from '../../Contexts/BookingAuthContextProvider';
 
 
 const label = { inputProps: { 'aria-label': 'Checkbox demo' } };
@@ -20,8 +22,14 @@ const FlightBooking = () => {
     const [allFlights, setAllFlights] = useState([]);
     const [isnonStop, setIsNonStop] = useState(false);
     const [isoneStop,setoneStop]=useState(false)
-    const [isonePlusStop,setIsonePlusStop]=useState(false)
-
+    const [isonePlusStop, setIsonePlusStop] = useState(false);
+    const [isAirIndia, setIsAirIndia] = useState(false);
+    const [isAirAsia, setIsAirAsia] = useState(false);
+    const [isGoFirst, SetIsGoFirst] = useState(false);
+    const [isIndigo, setIndigo] = useState(false);
+    const {isdropDown, setIsDropDown } = useContext(BookingContext);
+    const [count, setCount] = useState(1);
+   
 
       
 
@@ -61,8 +69,23 @@ const FlightBooking = () => {
           if (x === "1+-stops") {
             setIsonePlusStop(!isonePlusStop)
             console.log(isnonStop);
+         }
+          if (x === "AIR INDIA") {
+            setIsAirIndia(!isAirIndia)
+            console.log(isnonStop);
+         }
+          if (x === "AIRASIA INDIA") {
+            setIsAirAsia(!isAirAsia)
+            console.log(isnonStop);
+         }
+            if (x === "GO FIRST") {
+            SetIsGoFirst(!isGoFirst)
+            console.log(isnonStop);
         }
-        
+         if (x === "INDIGO") {
+             setIndigo(!isIndigo);
+         }
+            
         // let filter = [];
         //  if (!isnonStop) {
         //      filter = allFlights.filter((e) => e.flightStops === x) 
@@ -71,7 +94,8 @@ const FlightBooking = () => {
         // else setAllFlights(allFlights);
         // setAllFlights(filter);
     }
-    console.log("after",isnonStop);
+    console.log("after", isnonStop);
+    console.log(isAirIndia,"airindia");
     let filter = allFlights.filter((e) => {
         if (isnonStop &&e.flightStops === "non-stop") {
             return true;
@@ -82,15 +106,43 @@ const FlightBooking = () => {
         if (isonePlusStop && e.flightStops === "1+-stops") {
             return true
         }
-        if (!isnonStop && !isoneStop && !isonePlusStop) {
+         if (isAirIndia && e.flightName === "AIR INDIA") {
+            // console.log(isAirIndia,"airindia");
             return true;
         }
+        if (isAirAsia && e.flightName === "AIRASIA INDIA") {
+            // console.log(isAirIndia,"airindia");
+            return true;
+        }
+        if (isGoFirst && e.flightName === "GO FIRST") {
+            // console.log(isAirIndia,"airindia");
+            return true;
+        }
+        if (isIndigo && e.flightName === "INDIGO") {
+            // console.log(isAirIndia,"airindia");
+            return true;
+        }
+
+        if (!isAirIndia&&!isAirAsia&&!isGoFirst&&!isIndigo&&!isnonStop && !isoneStop && !isonePlusStop) {
+            return true;
+        }
+      
+
         return false;
 
-        });
-         
-    console.log("filter",filter);
+    });
+    
+   console.log("filter",filter);
 
+    
+    const handleDropdown = (id) => {
+        if (count % 2 === 1)
+            setIsDropDown(id);
+        else setIsDropDown("")
+        
+    }
+    
+    
     return (
         <>
             <div className={`${styles.searchbar}`}>
@@ -161,12 +213,12 @@ const FlightBooking = () => {
                 <div className={`${styles.airlines}`}>
                     <div><p style={{ marginBottom: "0px", fontSize: "15px", marginLeft: "20px" }}>Airlines</p></div>
                      <div className={`${styles.airlineCheckbox}`}>
-                        <Checkbox {...label} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
+                        <Checkbox {...label} checked={isAirIndia} onClick={()=>{handlechecked("AIR INDIA")}} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
                         <div>
                             <p>Air India</p>
                             <p>$5955</p>
                         </div>
-                        <Checkbox {...label} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
+                        <Checkbox {...label} checked={isAirAsia} onClick={()=>{handlechecked("AIRASIA INDIA")}} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
                         <div>
                             <p>AirAsia India</p>
                             <p>$5953</p>
@@ -174,12 +226,12 @@ const FlightBooking = () => {
                        
                     </div>
                          <div className={`${styles.airlineCheckbox}`}>
-                        <Checkbox {...label} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
+                        <Checkbox {...label} checked={isGoFirst} onClick={()=>{handlechecked("GO FIRST")}} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
                         <div>
                             <p>GO FIRST</p>
                             <p>$5954</p>
                         </div>
-                        <Checkbox {...label} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
+                        <Checkbox {...label} checked={isIndigo} onClick={()=>{handlechecked("INDIGO")}} style={{ color: "rgb(236,91,36) ", borderColor: "grey" }} />
                         <div>
                             <p>IndiGO</p>
                             <p>$5955</p>
@@ -273,7 +325,8 @@ const FlightBooking = () => {
                         Reccomended</button>
                     </div>
                     {filter.map((e) => {
-                        return <div className={`${styles.allFlights}`} key ={e._id}>
+                        return <div key={e._id}>
+                        <div className={`${styles.allFlights}`} key={e._id}>
                             <div className={`${styles.details}`}>
                                 <div className={`${styles.flightCode}`}>
                                     <img height="40px" width="50px" src={e.image} alt="" />
@@ -309,9 +362,14 @@ const FlightBooking = () => {
                                         <p style={{ fontSize: "10px", marginTop: "5px", color: "rgb(236,91,36)" }}>{e.offPrice } instant off</p>
                                     </div>
                                 </div>
-                                <button className={`${styles.Bookbtn}`}>BOOK</button>
+                                    <button onClick={() => { handleDropdown(e._id); setCount(count+1)}} className={`${styles.Bookbtn}`}>BOOK</button>
                             </div>
-                        </div>
+                            
+                            </div>
+                           <BookingDropDown id={e._id}/> 
+                    </div>
+                      
+
                     })}
                      
 
