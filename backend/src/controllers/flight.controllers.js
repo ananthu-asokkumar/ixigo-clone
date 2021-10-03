@@ -24,6 +24,15 @@ router.get("/", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    console.log(req.body);
+    const flight = await Flight.findById(req.params.id).lean().exec();
+    return res.send(flight);
+  } catch (err) {
+    return res.status(400).send(err);
+  }
+});
 
 router.patch("/:id", async function (req, res) {
   try {

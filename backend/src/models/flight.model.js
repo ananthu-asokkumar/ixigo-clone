@@ -8,7 +8,7 @@ const flightSchema = new mongoose.Schema(
     layover: {type: String, require: false },
     departureTime: {type: String,require: true },
     arrivalTime: {type: String, require: true },
-    duration: { type: String, require: true },
+    durationInMin: { type: Number, require: true },
     departurePlace: { type: String, require: true },
     arrivalPlace: { type: String, require: true },
     departureCode: { type: String, require: true },
@@ -21,9 +21,9 @@ const flightSchema = new mongoose.Schema(
     basicPrice: { type: Number, require: true },
     arrivalDate: { type: String, require: true },
     departureDate: { type: String, require: true },
-    flightType: { type: String, require: true },
+    flightStops: { type: String, require: true },
     offPrice: { type: Number, require: false },
-    flightClass:{type:String,require:false}
+    flightClass:{type:String,require:true}
   },
   {
     versionKey: false,
